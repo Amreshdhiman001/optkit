@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Issue Management Dashboard</title>
+    <!-- Include Chart.js from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Issue Management Dashboard</h1>
+
+    <!-- KPIs Section -->
+    <div>
+        <h2>Key Performance Indicators (KPIs)</h2>
+        <ul>
+            <li>
+                <strong>Average Issue Resolution Time:</strong>
+                <span id="avgResolutionTime">Loading...</span>
+            </li>
+            <li>
+                <strong>Open Issues:</strong>
+                <span id="openIssues">Loading...</span>
+            </li>
+            <!-- Add more KPIs as needed -->
+        </ul>
+    </div>
+
+    <!-- Chart Section -->
+    <div style="width:80%; margin:auto;">
+        <!-- Create a canvas element where the chart will be rendered -->
+        <canvas id="issueStatusChart"></canvas>
+    </div>
+
+    <script>
+        // Sample data for the issue status chart
+        var issueStatusData = {
+            labels: ['Open', 'In Progress', 'Resolved', 'Closed'],
+            datasets: [{
+                label: 'Issue Status',
+                backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(255, 205, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(54, 162, 235, 0.2)'],
+                borderColor: ['rgba(255,99,132,1)', 'rgba(255, 205, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(54, 162, 235, 1)'],
+                borderWidth: 1,
+                data: [15, 10, 25, 40],
+            }]
+        };
+
+        // Configuration options for the issue status chart
+        var issueStatusOptions = {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        };
+
+        // Get the canvas element for the issue status chart
+        var issueStatusCtx = document.getElementById('issueStatusChart').getContext('2d');
+
+        // Create the issue status chart
+        var issueStatusChart = new Chart(issueStatusCtx, {
+            type: 'bar',
+            data: issueStatusData,
+            options: issueStatusOptions
+        });
+
+        // Simulate asynchronous data fetching for KPIs
+        setTimeout(function() {
+            // Update Average Issue Resolution Time
+            var avgResolutionTimeElement = document.getElementById('avgResolutionTime');
+            avgResolutionTimeElement.textContent = '3 days';  // Replace with actual value
+
+            // Update Open Issues
+            var openIssuesElement = document.getElementById('openIssues');
+            openIssuesElement.textContent = '20';  // Replace with actual value
+        }, 2000); // Simulating a delay of 2 seconds
+    </script>
+</body>
+</html>
